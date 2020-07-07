@@ -1,11 +1,14 @@
 version: '3.4'
 services:
   metad0:
-    image: vesoft/nebula-metad:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-metad
+      - --flagfile=./etc/nebula-metad.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.1.1
       - --ws_ip=172.28.1.1
@@ -32,11 +35,14 @@ services:
     restart: on-failure
 
   metad1:
-    image: vesoft/nebula-metad:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-metad
+      - --flagfile=./etc/nebula-metad.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.1.2
       - --ws_ip=172.28.1.2
@@ -63,11 +69,14 @@ services:
     restart: on-failure
 
   metad2:
-    image: vesoft/nebula-metad:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-metad
+      - --flagfile=./etc/nebula-metad.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.1.3
       - --ws_ip=172.28.1.3
@@ -94,11 +103,14 @@ services:
     restart: on-failure
 
   storaged0:
-    image: vesoft/nebula-storaged:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-storaged
+      - --flagfile=./etc/nebula-storaged.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.2.1
       - --ws_ip=172.28.2.1
@@ -129,11 +141,14 @@ services:
     restart: on-failure
 
   storaged1:
-    image: vesoft/nebula-storaged:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-storaged
+      - --flagfile=./etc/nebula-storaged.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.2.2
       - --ws_ip=172.28.2.2
@@ -164,11 +179,14 @@ services:
     restart: on-failure
 
   storaged2:
-    image: vesoft/nebula-storaged:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-storaged
+      - --flagfile=./etc/nebula-storaged.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --local_ip=172.28.2.3
       - --ws_ip=172.28.2.3
@@ -199,11 +217,14 @@ services:
     restart: on-failure
 
   graphd:
-    image: vesoft/nebula-graphd:nightly
+    image: vesoft/nebula-graph:nightly
     environment:
       USER: root
       TZ:   "${TZ}"
     command:
+      - ./bin/nebula-graphd
+      - --flagfile=./etc/nebula-graphd.conf
+      - --daemonize=false
       - --meta_server_addrs=172.28.1.1:45500,172.28.1.2:45500,172.28.1.3:45500
       - --port=3699
       - --ws_ip=172.28.3.1
